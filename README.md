@@ -1,10 +1,8 @@
-# Examenopdracht Front-end Web Development / Web Services
+# Examenopdracht Web Services
 
-> Schrap hierboven wat niet past
-
-- Student: VOORNAAM NAAM
+- Student: Jules Roser
 - Studentennummer: xxxxxxxxx
-- E-mailadres: voornaam.naam@student.hogent.be
+- E-mailadres: jules.rosier@student.hogent.be
 
 ## Vereisten
 
@@ -19,8 +17,19 @@ Ik verwacht dat volgende software reeds geïnstalleerd is:
 
 ## Opstarten
 
-> Schrijf hier hoe we de applicatie starten (.env bestanden aanmaken, commando's om uit te voeren...)
+Voor het opstarten van de aplicatie moet er een `.env` bestand aangemaakt worden. Hier in moet mode ingestelt worden het zijnde 'development' of 'production'
+Voorbeeld:
 
+```
+# .env
+NODE_ENV=production
+```
+
+Voor het starten van de API moet het volgende commando in de root van het project worden uitgevoert.
+
+```
+yarn start
+```
 
 ## Testen
 

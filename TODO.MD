@@ -1,0 +1,8 @@
+- nodemon fixxen
+- controlleren of ik alles heb juist gedaan
+- idee vinden en opdracht lezen
+- npm run start
+- ideee
+  - muziek
+  - F1
+  - schaken
