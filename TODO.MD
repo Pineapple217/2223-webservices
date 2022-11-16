@@ -1,8 +1,1 @@
-- nodemon fixxen
-- controlleren of ik alles heb juist gedaan
-- idee vinden en opdracht lezen
-- npm run start
-- ideee
-  - muziek
-  - F1
-  - schaken
+- runcommand voor dev en voor production met andere .env

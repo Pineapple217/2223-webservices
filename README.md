@@ -1,7 +1,7 @@
 # Examenopdracht Web Services
 
 - Student: Jules Roser
-- Studentennummer: xxxxxxxxx
+- Studentennummer: 202184102
 - E-mailadres: jules.rosier@student.hogent.be
 
 ## Vereisten
