@@ -1,4 +1,4 @@
-const { getLogger } = require('../core/logging')
+// const { getLogger } = require('../core/logging')
 const { getPrisma } = require('../data')
 const prisma = getPrisma()
 
