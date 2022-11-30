@@ -16,8 +16,10 @@
     "config": "^3.3.8",
     "env-cmd": "^10.1.0",
     "jest-each": "^29.3.1",
+    "joi": "^17.7.0",
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",
+    "node-emoji": "^1.11.0",
     "prisma": "^4.6.0",
     "winston": "^3.8.2"
   },

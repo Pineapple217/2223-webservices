@@ -1,1 +1,1 @@
-const each = require("jest-each").default;
+const each = require('jest-each').default;
