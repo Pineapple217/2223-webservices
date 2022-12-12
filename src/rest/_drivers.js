@@ -1,12 +1,14 @@
 const Router = require('@koa/router');
 const Joi = require('joi');
 
+const { hasPermission, permissions } = require('../core/auth');
 const driverService = require('../service/drivers');
 
 const validate = require('./_validation');
 
 
 const getAllDrivers = async (ctx) => {
+
   ctx.body = await driverService.getAll();
   ctx.status = 200;
 };
@@ -31,8 +33,8 @@ module.exports = (app) => {
     prefix: '/drivers',
   });
 
-  router.get('/', getAllDrivers);
-  router.get('/:id', validate(getDriverById.validationScheme), getDriverById);
+  router.get('/', hasPermission(permissions.read), getAllDrivers);
+  router.get('/:id', hasPermission(permissions.read), validate(getDriverById.validationScheme), getDriverById);
   router.delete('/:id', deleteDriverById);
 
   app.use(router.routes()).use(router.allowedMethods());

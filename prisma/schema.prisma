@@ -59,3 +59,7 @@ model RacesOnDrivers {
 
   @@id([raceId, driverId])
 }
+
+model User {
+  auth0Id     String @db.VarChar(255) @unique
+}

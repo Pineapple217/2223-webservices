@@ -2,9 +2,11 @@ const Koa = require('koa');
 const config = require('config');
 const bodyParser = require('koa-bodyparser');
 const koaCors = require('@koa/cors');
-const emoji =require('node-emoji');
+const emoji = require('node-emoji');
+// const { serializeError } = require('serialize-error');
 
 const { initializeLogger, getLogger } = require('./core/logging');
+const { checkJwtToken } = require('./core/auth');
 const installRest = require('./rest');
 const { initializeData, shutdownData } = require('./data/index');
 const ServiceError = require('./core/serviceError');
@@ -41,7 +43,11 @@ module.exports = async function createServer() {
 
   const logger = getLogger();
 
+  app.use(checkJwtToken());
+
+
   app.use(bodyParser());
+
   app.use(async (ctx, next) => {
     logger.info(`${emoji.get('fast_forward')} ${ctx.method} ${ctx.url}`);
 
@@ -90,11 +96,25 @@ module.exports = async function createServer() {
         else if (error.isUnauthorized) statusCode = 401;
         else if (error.isForbidden) statusCode = 403;
       }
+      if (ctx.state.jwtOriginalError) {
+        statusCode = 401;
+        errorBody.code = 'UNAUTHORIZED';
+        errorBody.message = ctx.state.jwtOriginalError.message;
+        // errorBody.details.jwtOriginalError = serializeError(ctx.state.jwtOriginalError);
+      }
 
       ctx.status = statusCode;
       ctx.body = errorBody;
     }
   });
+
+  // app.use(async (ctx ,next) => {
+  //   const logger = getLogger();
+  //   logger.debug(ctx.headers.authorization); // 👈 1
+  //   logger.debug(JSON.stringify(ctx.state.user)); // 👈 2
+  //   logger.debug(ctx.state.jwtOriginalError); // 👈 3
+  //   await next();
+  // });
 
   installRest(app);
 

@@ -1,4 +1,4 @@
-const winston = require("winston");
+const winston = require('winston');
 const { combine, timestamp, colorize, printf } = winston.format;
 
 let logger;
@@ -15,7 +15,7 @@ const loggerFormat = () => {
 };
 
 module.exports.getLogger = () => {
-  if (!logger) throw new Error("You must first initialize the logger");
+  if (!logger) throw new Error('You must first initialize the logger');
   return logger;
 };
 
