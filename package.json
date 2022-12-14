@@ -2,6 +2,7 @@
   "version": "0.0.1",
   "scripts": {
     "start": "npx env-cmd nodemon src/index.js",
+    "start:prod": "node src/index.js",
     "test": "jest",
     "test:coverage": "yarn test --coverage",
     "lint": "npx eslint . --fix"
