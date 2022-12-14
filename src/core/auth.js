@@ -41,9 +41,6 @@ function checkJwtToken() {
   }
 }
 
-
-
-
 async function addUserInfo(ctx) {
   const logger = getLogger();
   try {
