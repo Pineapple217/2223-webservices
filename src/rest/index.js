@@ -1,14 +1,14 @@
-const Router = require("@koa/router");
+const Router = require('@koa/router');
 
-const installHealthRouter = require("./_health");
-const installDriversRouter = require("./_drivers");
-const installTeamsRouter = require("./_teams");
-const installCircuitsRouter = require("./_circuits");
-const installRacesRouter = require("./_races");
+const installHealthRouter = require('./_health');
+const installDriversRouter = require('./_drivers');
+const installTeamsRouter = require('./_teams');
+const installCircuitsRouter = require('./_circuits');
+const installRacesRouter = require('./_races');
 
 module.exports = (app) => {
   const router = new Router({
-    prefix: "/api",
+    prefix: '/api',
   });
 
   installHealthRouter(router);

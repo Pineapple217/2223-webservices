@@ -21,7 +21,7 @@ module.exports = async function createServer() {
   initializeLogger({
     level: LOG_LEVEL,
     disabled: LOG_DISABLED,
-    //   defaultMeta: { NODE_ENV },
+    // defaultMeta: { NODE_ENV },
   });
 
   await initializeData();

@@ -80,6 +80,7 @@ function hasPermission(permission) {
 
     // simply having a user object means they are logged in
     if (user && permission === permissions.loggedIn) {  // 👈
+    // if (true) {
       await next();
     } else if (user && user.permissions && user.permissions.includes(permission)) {
       await next();

@@ -1,1 +1,0 @@
-- runcommand voor dev en voor production met andere .env
