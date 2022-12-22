@@ -1,28 +1,23 @@
 // const { getLogger } = require('../core/logging')
-const { getPrisma } = require('../data');
+const driverRepository = require('../repository/driver');
 
 const getAll = async () => {
-  const prisma = getPrisma();
-  const allDrivers = await prisma.driver.findMany();
+  const allDrivers = await driverRepository.findAll();
   return allDrivers;
 };
 
 const getById = async (id) => {
-  const prisma = getPrisma();
-  const driver = await prisma.driver.findUnique({
-    where: { id },
-  });
+  const driver = await driverRepository.findById(id);
   return driver;
 };
 
-const deleteByiD = async (id) => {
-  const prisma = getPrisma();
-  const driver = await prisma.driver.delete({ where: { id } });
+const deleteById = async (id) => {
+  const driver = await driverRepository.deleteById(id);
   return driver;
 };
 
 module.exports = {
   getAll,
   getById,
-  deleteByiD,
+  deleteById,
 };

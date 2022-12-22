@@ -24,7 +24,7 @@ getDriverById.validationScheme = {
 };
 
 const deleteDriverById = async (ctx) => {
-  ctx.body = await driverService.deleteByiD(parseInt(ctx.params.id));
+  ctx.body = await driverService.deleteById(parseInt(ctx.params.id));
   ctx.status = 204;
 };
 

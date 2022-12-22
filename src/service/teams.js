@@ -1,15 +1,13 @@
 // const { getLogger } = require('../core/logging')
-const { getPrisma } = require('../data');
+const teamRepository = require('../repository/team');
 
 const getAll = async () => {
-  const prisma = getPrisma();
-  const allTeams = await prisma.team.findMany();
+  const allTeams = await teamRepository.findAll();
   return allTeams;
 };
 
 const getById = async (id) => {
-  const prisma = getPrisma();
-  const team = await prisma.team.findUnique({ where: { id } });
+  const team = await teamRepository.findById(id);
   return team;
 };
 

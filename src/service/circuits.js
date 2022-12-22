@@ -1,9 +1,8 @@
 // const { getLogger } = require('../core/logging')
-const { getPrisma } = require('../data');
+const circuitRepository = require('../repository/circuit');
 
 const getAll = async () => {
-  const prisma = getPrisma();
-  const allCircuits = await prisma.circuit.findMany();
+  const allCircuits = await circuitRepository.findAll();
   return allCircuits;
 };
 
