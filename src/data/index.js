@@ -25,7 +25,7 @@ function getPrisma() {
 async function shutdownData() {
   const logger = getLogger();
   await prisma.$disconnect();
-  logger.info(`${emoji.get('red_circle')}Database connection closed`);
+  logger.info(`${emoji.get('red_circle')} Database connection closed`);
 }
 
 module.exports = {

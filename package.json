@@ -3,7 +3,7 @@
   "scripts": {
     "start": "npx env-cmd nodemon src/index.js",
     "start:prod": "node src/index.js",
-    "test": "jest",
+    "test": "npx env-cmd -f .env.test jest",
     "test:coverage": "yarn test --coverage",
     "lint": "npx eslint . --fix"
   },
