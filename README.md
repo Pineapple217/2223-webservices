@@ -34,3 +34,6 @@ yarn start
 ## Testen
 
 > Schrijf hier hoe we de testen uitvoeren (.env bestanden aanmaken, commando's om uit te voeren...)
+
+Maak een bestand aan met de naam `.env.test`.
+Voer het commando `yarn test` uit voor te testen. Het commando `yarn test:coverage` kan ook gebruikt worden om een overzicht te krijgen van hoeveel van de code er getest word.
