@@ -30,11 +30,28 @@ AUTH_AUDIENCE=uniek aan iedere auth0 palicatie
 AUTH_ISSUER=auth 0 domein
 AUTH_USER_INFO=auth 0 domein/userinfo'
 ```
+Vergeet ook niet alle yarn packages te downloaden vooe het starten van het programma, dit kan je simpel doen met het volgende commando.
+
+```
+yarn install
+```
 
 Voor het starten van de API moet het volgende commando in de root van het project worden uitgevoert.
 
 ```
 yarn start
+```
+## Datalaag
+
+Dit project maakt gebruik van [Prisma](https://www.prisma.io/). Voor de databank te seeden word het volgende Prisma commando gebruikt.
+
+```
+yarn prisma db seed
+```
+Migrations kunnen ook op een simpele manier uitgevoerd worden met volgend commando.
+
+```
+yarn prisma migrate dev
 ```
 
 ## Testen
