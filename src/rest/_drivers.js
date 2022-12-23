@@ -15,7 +15,7 @@ getAllDrivers.validationScheme = null;
 
 const getDriverById = async (ctx) => {
   ctx.body = await driverService.getById(ctx.params.id);
-  ctx.status = 201;
+  ctx.status = 200;
 };
 getDriverById.validationScheme = {
   params: Joi.object({

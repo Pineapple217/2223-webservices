@@ -3,9 +3,6 @@ const { getPrisma } = require('../data');
 const findAll = async () => {
   const prisma = getPrisma();
   let allRaces = await prisma.race.findMany({
-    include: {
-      drivers: {select: { driverId: true, position: true}},
-    }
   });
   // allRaces.forEach(race => race.drivers = race.drivers.map((d) => d.driverId));
   return allRaces;
@@ -13,7 +10,12 @@ const findAll = async () => {
 
 const findById = async (id) => {
   const prisma = getPrisma();
-  const race = await prisma.race.findUnique({ where: { id } });
+  const race = await prisma.race.findUnique({
+    where: { id },
+    include: {
+      drivers: {select: { driverId: true, position: true}},
+    }
+  });
   return race;
 };
 

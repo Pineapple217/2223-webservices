@@ -3,8 +3,8 @@
   "scripts": {
     "start": "npx env-cmd nodemon src/index.js",
     "start:prod": "node src/index.js",
-    "test": "npx env-cmd -f .env.test jest",
-    "test:coverage": "yarn test --coverage",
+    "test": "npx env-cmd -f .env.test jest -i",
+    "test:coverage": "yarn test -i --coverage",
     "lint": "npx eslint . --fix"
   },
   "prisma": {
