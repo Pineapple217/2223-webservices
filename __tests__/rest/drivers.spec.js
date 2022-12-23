@@ -1,12 +1,5 @@
 // const each = require('jest-each').default;
-
-const supertest = require('supertest');
-const config = require('config');
-
-const { getPrisma } = require('../../src/data');
-const createServer = require('../../src/createServer');
-
-const AUTH_TOKEN = config.get('auth.testToken');
+const { withServer } = require('../helpers');
 
 const data = {
   drivers: [
@@ -33,19 +26,14 @@ const data = {
 };
 
 describe('drivers', () => {
-  let server;
   let request;
   let prisma;
+  let AUTH_TOKEN;
 
-  beforeAll(async () => {
-    server = await createServer();
-    request = supertest(server.getApp().callback());
-    prisma = getPrisma();
-  });
-
-
-  afterAll(async () => {
-    await server.stop();
+  withServer(({ prisma: p, request: r, AUTH_TOKEN: a}) => {
+    prisma = p;
+    request = r;
+    AUTH_TOKEN = a;
   });
 
   const url = '/api/drivers';
@@ -76,6 +64,18 @@ describe('drivers', () => {
         .set('Authorization', `Bearer ${AUTH_TOKEN}`);
 
       expect(response.status).toBe(200);
+    });
+
+    test('it should 401', async () => {
+      const response = await request.get(url);
+      expect(response.status).toBe(401);
+    });
+
+    test('it should 400', async () => {
+      const response = await request.get(`${url}/fsdfsf`)
+        .set('Authorization', `Bearer ${AUTH_TOKEN}`);
+
+      expect(response.status).toBe(400);
     });
   });
 

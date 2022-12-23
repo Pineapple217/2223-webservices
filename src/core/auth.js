@@ -70,16 +70,18 @@ const permissions = Object.freeze({
   loggedIn: 'loggedIn',
   read: 'read',
   write: 'write',
+  change: 'change',
+  delete: 'delete'
 });
 
 function hasPermission(permission) {
   return async (ctx, next) => {
     const logger = getLogger();
     const user = ctx.state.user;
-    logger.debug(`hasPermission: ${JSON.stringify(user)}`);
+    logger.debug(`hasPermission: ${JSON.stringify(user.permissions)}`);
 
     // simply having a user object means they are logged in
-    if (user && permission === permissions.loggedIn) {  // 👈
+    if (user && permission == permissions.loggedIn) {  // 👈
     // if (true) {
       await next();
     } else if (user && user.permissions && user.permissions.includes(permission)) {
