@@ -1,15 +1,33 @@
+const axios = require('axios');
 const supertest = require('supertest');
 const config = require('config');
 
 const { getPrisma } = require('../src/data');
 const createServer = require('../src/createServer');
-const AUTH_TOKEN = config.get('auth.testToken');
+// const AUTH_TOKEN = config.get('auth.testToken');
+
+const fetchAccessToken = async () => {
+  const response = await axios.post(config.get('auth.tokenUrl'), {
+    grant_type: 'password',
+    username: config.get('auth.testUser.username'),
+    password: config.get('auth.testUser.password'),
+    audience: config.get('auth.audience'),
+    scope: 'openid profile email offline_access',
+    client_id: config.get('auth.clientId'),
+    client_secret: config.get('auth.clientSecret'),
+  }, {
+    headers: { 'Accept-Encoding': 'gzip,deflate,compress' } 
+  });
+
+  return response.data.access_token;
+};
 
 const withServer = (setter) => {
   let server;
 
   beforeAll(async () => {
     server = await createServer();
+    const AUTH_TOKEN = await fetchAccessToken();
 
     setter({
       prisma: getPrisma(),
@@ -75,4 +93,5 @@ const data ={
 module.exports = {
   withServer,
   data,
+  fetchAccessToken,
 };
