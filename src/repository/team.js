@@ -8,7 +8,12 @@ const findAll = async () => {
 
 const findById = async (id) => {
   const prisma = getPrisma();
-  const team = await prisma.team.findUnique({ where: { id } });
+  const team = await prisma.team.findUnique({
+    where: { id },
+    include: {
+      drivers: true
+    }
+  });
   return team;
 };
 

@@ -20,6 +20,8 @@ getCircuitById.validationScheme = {
   })
 };
 
+// const getCircuitRacesById = async 
+
 const createCircuit = async (ctx) => {
   const newCircuit = await circuitService.create(ctx.request.body);
   ctx.body = newCircuit;
@@ -33,6 +35,7 @@ createCircuit.validationScheme = {
     length: Joi.number(),
   })
 };
+
 
 const updateCircuit = async (ctx) => {
   const updatedCircuit = await circuitService.updateById(ctx.params.id, ctx.request.body);
