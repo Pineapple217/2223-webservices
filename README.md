@@ -39,6 +39,14 @@ yarn start
 
 ## Testen
 
-Maak een bestand aan met de naam `.env.test`.
+Maak een bestand aan met de naam `.env.test`. Hier in komt het zelfde van de voorgaande `.env` in de meeste gavallen plus een aantal extra dingen in verband met Auth0.
+```
+AUTH_TEST_USER_USER_ID=de user id van de test gebruiker
+AUTH_TEST_USER_USERNAME=de gebruikers naam van de test gebruiker
+AUTH_TEST_USER_PASSWORD=het wachtwoord van de test gebruiker
+AUTH_TOKEN_URL=uw auth0 domein/oauth/token
+AUTH_CLIENT_ID=uw auth0 application client id
+AUTH_CLIENT_SECRET=uw auth0 application client id secret
+```
 
 Voer het commando `yarn test` uit voor te testen. Het commando `yarn test:coverage` kan ook gebruikt worden om een overzicht te krijgen van hoeveel van de code er getest word.
