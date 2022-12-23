@@ -16,14 +16,14 @@ const create = async ({
   base,
   chief,
   powerUnit,
-  drivers,
+  // drivers,
 }) => {
   const newTeam = {
     name,
     base,
     chief,
     powerUnit,
-    drivers,
+    // drivers,
   };
   return await teamRepository.create(newTeam);
 };

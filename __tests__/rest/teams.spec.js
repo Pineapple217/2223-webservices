@@ -95,4 +95,30 @@ describe('circuits', () => {
     });
   });
 
+
+  describe('PUT /api/teams/:id', () => {
+    beforeAll(async () => {
+      await prisma.team.createMany({data: data.teams});
+    });
+
+    afterAll(async () => {
+      await prisma.team.deleteMany({where: {id: {in: data.toDel.teams}}});
+    });
+
+    test('it should 204 and return nothing', async () => {
+      const response = await request.put(`${url}/1`)
+        .set('Authorization', `Bearer ${AUTH_TOKEN}`)
+        .send({
+          name: 'red bull racing, nu anders',
+          base: 'milton keynes, united kingdom',
+          chief: 'Mattia Binotto',
+          powerUnit: 'red bull powertrains',
+        });
+
+      expect(response.status).toBe(200);
+      expect(response.body.id).toBeTruthy();
+      expect(response.body.name).toBe('red bull racing, nu anders');
+    });
+  });
+
 });

@@ -1,8 +1,5 @@
 # Voornaam Familienaam (Studentennummer)
 
-> Duid aan welke vakken je volgt en vermeld voor deze vakken de link naar jouw GitHub repository. In het geval je slechts één vak volgt, verwijder alle inhoud omtrent het andere vak.
-> Verwijder alle instructies (lijnen die starten met >)
-
 - [ ] Front-end Web Development
   - [GitHub repository](github.com/HOGENT-Web)
   - [Online versie](github.com/HOGENT-Web)
@@ -19,11 +16,15 @@
 
 Mijn project houd F1 raceresulaten en informatie over de driver, teams, circuits.
 
-![EERD](./prisma-erd.svg)
+<img src="./prisma-erd.svg" alt="eerd" width="400"/>
 
 ## Screenshots
 
-> Voeg enkele (nuttige!) screenshots toe die tonen wat de app doet.
+<img src="./drivers.png" alt="drivers" width="300"/>
+
+<img src="./race.png" alt="race" width="300"/>
+
+<img src="./circuit.png" alt="circuit" width="300"/>
 
 ## Behaalde minimumvereisten
 
@@ -83,12 +84,13 @@ Ik heb gekozen voor een ORM (Object-relational mapping) gekozen voor dit project
 
 ### Web Services
 
-> Schrijf hier een korte oplijsting en beschrijving van de geschreven testen + voeg een screenshot van de coverage en uitvoering toe
-
 Alles onderdelen van de rest lagen worden voornamelijk getest, inclusief health. Veel voorkomende errors worden ook getest zoals 404, 401 en 400. Alle testen maken ook altijd gebruik van authenticatie.
+
+![coverage](./coverage.png)
 
 ## Gekende bugs
 
 ### Web Services
 
 Er zijn geen bugs waar ik op de hoogte van ben maar ik sleut het niet uit dat er mogelijks bugs zouden zijn.
+

@@ -44,9 +44,15 @@ const updateById = async(
     name,
     isSprint,
     circuitId,
+    drivers,
   }
 ) => {
+  console.log(drivers);
   const prisma = getPrisma();
+  // const t = drivers.map((d) => {
+  //   return {driver: {connect: {id: d.id}}, position: d.position};
+  // });
+  // console.log(t);
   const updatedRace = await prisma.race.update({
     where: {
       id
@@ -56,7 +62,13 @@ const updateById = async(
       name,
       isSprint,
       circuitId,
-    }
+      drivers: {
+        // create: [...t]
+        // create: [
+        //   {driver: {connect: {id: 440}}, position: 5},
+        // ]
+      },
+    },
   });
   return updatedRace;
 };

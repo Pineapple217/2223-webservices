@@ -16,12 +16,14 @@ const create = async ({
   name,
   isSprint,
   circuitId,
+  // drivers
 }) => {
   const newRace = {
     start,
     name,
     isSprint,
     circuitId,
+    // drivers
   };
   return await raceRepository.create(newRace);
 };
@@ -33,12 +35,14 @@ const updateById = async (
     name,
     isSprint,
     circuitId,
+    drivers,
   }) => {
   const updatedRace = {
     start,
     name,
     isSprint,
     circuitId,
+    drivers,
   };
   return await raceRepository.updateById(id, updatedRace);
 };

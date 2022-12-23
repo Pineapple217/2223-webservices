@@ -31,7 +31,7 @@ const create = async ({
       base,
       chief,
       powerUnit,
-      // drivers: [],
+      // drivers: {connect: { id:[...drivers]}},
     }
   });
   return newTeam;

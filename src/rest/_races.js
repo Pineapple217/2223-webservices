@@ -51,6 +51,10 @@ updateRace.validationScheme = {
     name: Joi.string().max(255),
     isSprint: Joi.boolean(),
     circuitId: Joi.number().integer().positive(),
+    drivers: Joi.array().items(Joi.object({
+      id: Joi.number().integer().positive(),
+      position: Joi.number().integer().positive().less(21)
+    })),
   })
 };
 
