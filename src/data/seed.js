@@ -88,19 +88,22 @@ async function main() {
 
   const japan_2022 = await prisma.race.create({
     data: {
-      start: new Date('2022-10-9'), // 14:00
+      start: new Date('2022-10-09T14:00:00+09:00'),
       name: 'Formula 1 Honda Japanese Grand Prix 2022',
       isSprint: false,
       circuit: {connect: {id: suzuka.id}},
-      drivers: {create: [
-        {driver: {connect: {id: ver.id}}},
-        {driver: {connect: {id: per.id}}},
-        {driver: {connect: {id: lec.id}}},
-        {driver: {connect: {id: sai.id}}},
-      ]
+      drivers: {
+        create: [
+          {driver: {connect: {id: ver.id}}, position: 1},
+          {driver: {connect: {id: per.id}}, position: 2},
+          {driver: {connect: {id: lec.id}}, position: 3},
+          {driver: {connect: {id: sai.id}}, position: 4},
+        ]
       },
     },
   });
+
+
 
   console.log({ japan_2022 });
 }

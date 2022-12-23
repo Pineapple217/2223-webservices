@@ -11,6 +11,53 @@ const getById = async (id) => {
   return driver;
 };
 
+const create = async ({
+  firstName,
+  lastName,
+  shortName,
+  country,
+  number,
+  dateOfBirth,
+  teamId,
+  // races,
+}) => {
+  const newDriver = {
+    firstName,
+    lastName,
+    shortName,
+    country,
+    number,
+    dateOfBirth,
+    teamId,
+    // races,
+  };
+  return await driverRepository.create(newDriver);
+};
+
+const updateById = async (
+  id,
+  {
+    firstName,
+    lastName,
+    shortName,
+    country,
+    number,
+    dateOfBirth,
+    teamId,
+  }
+) => {
+  const updatedDriver = {
+    firstName,
+    lastName,
+    shortName,
+    country,
+    number,
+    dateOfBirth,
+    teamId,
+  };
+  return await driverRepository.updateById(id, updatedDriver);
+};
+
 const deleteById = async (id) => {
   const driver = await driverRepository.deleteById(id);
   return driver;
@@ -19,5 +66,7 @@ const deleteById = async (id) => {
 module.exports = {
   getAll,
   getById,
+  create,
+  updateById,
   deleteById,
 };

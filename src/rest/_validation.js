@@ -5,8 +5,7 @@ const JOI_OPTIONS = {
   allowUnknown: false,
   context: true,
   convert: true,
-  presence: 'requited',
-  
+  presence: 'required',
 };
 
 const cleanupJoiError = (error) => error.details.reduce((resultObj, {
@@ -27,43 +26,84 @@ const cleanupJoiError = (error) => error.details.reduce((resultObj, {
 }, {});
 
 const validate = (schema) => {
-  if (!schema) { // validate(null)
+  if (!schema) {
     schema = {
       query: {},
       body: {},
-      params: {}
+      params: {},
     };
   }
 
   return (ctx, next) => {
-    const errors = {};  
-    if (!Joi.isSchema(schema.params)) {
-      schema.params = Joi.object(schema.params || {}); // als params === undifiend, {} gebruiken
+    const errors = {};
+    if (schema.query) {
+      if (!Joi.isSchema(schema.query)) {
+        schema.query = Joi.object(schema.query);
+      }
+
+      const {
+        error: queryErrors,
+        value: queryValue,
+      } = schema.query.validate(
+        ctx.query,
+        JOI_OPTIONS,
+      );
+
+      if (queryErrors) {
+        errors.query = cleanupJoiError(queryErrors);
+      } else {
+        ctx.query = queryValue;
+      }
     }
 
-    const {
-      error: paramsError,
-      value: paramsValue,
-    } = schema.params.validate(
-      ctx.params,
-      JOI_OPTIONS,
-    );
-
-    if (paramsError) {
-      errors.params = cleanupJoiError(paramsError);
-    } else {
-      ctx.params = paramsValue;
+    if (schema.body) {
+      if (!Joi.isSchema(schema.body)) {
+        schema.body = Joi.object(schema.body);
+      }
+    
+      const {
+        error: bodyErrors,
+        value: bodyValue,
+      } = schema.body.validate(
+        ctx.request.body,
+        JOI_OPTIONS,
+      );
+    
+      if (bodyErrors) {
+        errors.body = cleanupJoiError(bodyErrors);
+      } else {
+        ctx.request.body = bodyValue;
+      }
     }
 
-    if (Object.keys(errors).length > 0) {
-      ctx.throw(400, 'Validaton failed, check details for more information', {
+    if (schema.params) {
+      if (!Joi.isSchema(schema.params)) {
+        schema.params = Joi.object(schema.params);
+      }
+    
+      const {
+        error: paramsErrors,
+        value: paramsValue,
+      } = schema.params.validate(
+        ctx.params,
+        JOI_OPTIONS,
+      );
+    
+      if (paramsErrors) {
+        errors.params = cleanupJoiError(paramsErrors);
+      } else {
+        ctx.params = paramsValue;
+      }
+    }
+
+    if (Object.keys(errors).length) {
+      ctx.throw(400, 'Validation failed, check details for more information', {
         code: 'VALIDATION_FAILED',
-        details: errors
+        details: errors,
       });
     }
 
     return next();
   };
 };
-
 module.exports = validate;

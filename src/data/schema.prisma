@@ -52,6 +52,7 @@ model Race {
 }
 
 model RacesOnDrivers {
+  position    Int
   race        Race @relation(fields: [raceId], references: [id])
   raceId      Int
   driver      Driver @relation(fields: [driverId], references: [id])
